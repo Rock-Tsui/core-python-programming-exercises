@@ -71,8 +71,8 @@ class Room(object):
         else:
             for usr in self.usrlist:
                 if usr.name == msg.toU:
-                    usr.__class__.heared[msg.toU] = msg
-                    #usr.hearroom(msg)
+                    #usr.__class__.heared[msg.toU] = msg
+                    usr.hearroom(msg)
 
 
 usr1 = User('Jim', 23, 'male')
@@ -87,5 +87,3 @@ rm1.adduser(usr1)
 rm1.adduser(usr2)
 rm1.adduser(usr3)
 usr2.talkroom(rm1, 'Lucy', 'Hello, Lucy!')
-usr1.hear()
-usr3.hear()
