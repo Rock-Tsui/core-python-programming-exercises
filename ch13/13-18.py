@@ -1,4 +1,5 @@
 import os
+import difflib
 import pickle
 from datetime import datetime
 
@@ -58,6 +59,8 @@ class UserList(list):
                 if self[i][1] == pwd:
                     if (datetime.now().date() - self[i][2].date()).days <= self.valid:
                         print 'Your pwd is not expired, pls change one'
+                elif difflib.SequenceMatcher(None, self[i][1], pwd).ratio() <= 0.5:
+                    print 'Do not allow similar passwords, pls change one'
                 else:
                     self[i][1] = pwd
                     self[i][2] = datetime.now()
@@ -71,9 +74,9 @@ if __name__ == '__main__':
     #print user1
     #user1.newuser('root1', 'r1')
     #user1.newuser('root2', 'r2')
-    user1.login('root1', 'r1')
-    user1.login('root1', 'r1')
-    user1.updatepwd('root2', 'r2')
+    #user1.login('root1', 'r1')
+    user1.login('root2', 'r2')
+    user1.updatepwd('root2', 'r1')
     #user1.deluser('root2')
     print user1
     #user1.login('root1', 'r1')
